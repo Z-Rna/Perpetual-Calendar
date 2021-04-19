@@ -2,11 +2,14 @@ package com.example.calendar_calculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_sunday.*
 import java.time.LocalDate
 
 class SundayActivity : AppCompatActivity() {
+    private lateinit var listView: ListView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sunday)
@@ -26,16 +29,16 @@ class SundayActivity : AppCompatActivity() {
             val lastSundayAugust = lastSunday(LocalDate.of(year, 8, 31))
             val lastSundayChristmas = lastSunday(LocalDate.of(year, 12, 25), true)
             val lastLastSundayChristmas = lastSundayChristmas.minusDays(7)
-
-            (
-                    "January: " + lastSundayJanuary.toString() +
-                    "\n\nApril: " + lastSundayApril.toString() +
-                    "\n\nJune: " + lastSundayJune +
-                    "\n\nAugust: " + lastSundayAugust +
-                    "\n\nBefore Easter: " + easter +
-                    "\n\nDecember: " + lastSundayChristmas +
-                    "\n\nDecember: " +  lastLastSundayChristmas
-                    ).also { textView2.text = it }
+            val dates = arrayListOf("January: $lastSundayJanuary",
+                                    "Before Easter: $easter",
+                                    "April: $lastSundayApril",
+                                    "June: $lastSundayJune",
+                                    "August: $lastSundayAugust",
+                                    "December: $lastSundayChristmas",
+                                    "December: $lastLastSundayChristmas")
+            listView = findViewById(R.id.listView)
+            val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, dates)
+            listView.adapter = adapter
         }
     }
     private fun lastSunday(date: LocalDate): LocalDate {

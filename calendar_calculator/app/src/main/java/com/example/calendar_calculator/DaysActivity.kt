@@ -2,6 +2,7 @@ package com.example.calendar_calculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.DatePicker
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_days.*
 import java.time.LocalDate
@@ -9,69 +10,83 @@ import java.time.LocalDate
 //About LocalDate: https://www.baeldung.com/kotlin/dates
 class DaysActivity : AppCompatActivity() {
     private lateinit var holidayArray: Array<Any>
+    private lateinit var DP1: DatePicker
+    private lateinit var DP2: DatePicker
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_days)
+        DP1 = findViewById(R.id.datePicker1)
+        DP2 = findViewById(R.id.datePicker2)
 
-        AcceptButton.setOnClickListener {
-            val DP1_day = datePicker1.dayOfMonth
-            val DP1_month = datePicker1.month + 1
-            val DP1_year = datePicker1.year
-            val DP1_date = LocalDate.of(DP1_year, DP1_month, DP1_day)
+        change()
 
-            val DP2_day = datePicker2.dayOfMonth
-            val DP2_month = datePicker2.month + 1
-            val DP2_year = datePicker2.year
-            val DP2_date = LocalDate.of(DP2_year, DP2_month, DP2_day)
+        DP1.setOnDateChangedListener { _, _, _, _ ->
+            change()
+        }
 
-            if(!DP1_date.isAfter(DP2_date)) {
-                var date = DP1_date
-                var everyDay = 0
-                var workDay = 0
-                var currentYear = DP1_year - 1
+        DP2.setOnDateChangedListener { _, _, _, _ ->
+            change()
+        }
+    }
 
-                while (!date.isEqual(DP2_date)) {
-                    if(!currentYear.equals(date.year)) {
-                        currentYear = date.year
+    private fun change() {
+        val DP1_day = DP1.dayOfMonth
+        val DP1_month = DP1.month + 1
+        val DP1_year = DP1.year
+        val DP1_date = LocalDate.of(DP1_year, DP1_month, DP1_day)
 
-                        val firstJanuary = LocalDate.of(currentYear, 1, 1)
-                        val sixthJanuary = LocalDate.of(currentYear, 1, 1)
+        val DP2_day = DP2.dayOfMonth
+        val DP2_month = DP2.month + 1
+        val DP2_year = DP2.year
+        val DP2_date = LocalDate.of(DP2_year, DP2_month, DP2_day)
 
-                        val firstMay = LocalDate.of(currentYear, 5, 1)
-                        val thirdMay = LocalDate.of(currentYear, 5, 3)
+        if(!DP1_date.isAfter(DP2_date)) {
+            var date = DP1_date
+            var everyDay = 0
+            var workDay = 0
+            var currentYear = DP1_year - 1
 
-                        val firstNovember = LocalDate.of(currentYear, 11, 1)
-                        val eleventhNovember = LocalDate.of(currentYear, 11, 11)
+            while (!date.isEqual(DP2_date)) {
+                if(!currentYear.equals(date.year)) {
+                    currentYear = date.year
 
-                        val firstChristmasDay = LocalDate.of(currentYear, 12, 25)
-                        val secondChristmasDay = LocalDate.of(currentYear, 12, 26)
+                    val firstJanuary = LocalDate.of(currentYear, 1, 1)
+                    val sixthJanuary = LocalDate.of(currentYear, 1, 1)
 
-                        val fifteenAugust = LocalDate.of(currentYear, 8, 15)
+                    val firstMay = LocalDate.of(currentYear, 5, 1)
+                    val thirdMay = LocalDate.of(currentYear, 5, 3)
 
-                        val easter = easter(currentYear)
-                        val easterDate = LocalDate.of(currentYear, easter[1], easter[0])
+                    val firstNovember = LocalDate.of(currentYear, 11, 1)
+                    val eleventhNovember = LocalDate.of(currentYear, 11, 11)
 
-                        val easterMonday = easterDate.plusDays(1)
-                        val dateCorpusChristi = easterDate.plusDays(60)
+                    val firstChristmasDay = LocalDate.of(currentYear, 12, 25)
+                    val secondChristmasDay = LocalDate.of(currentYear, 12, 26)
 
-                        holidayArray = arrayOf(firstJanuary, sixthJanuary, firstMay, thirdMay, firstNovember,
-                                eleventhNovember, firstChristmasDay, secondChristmasDay, fifteenAugust, easterMonday, dateCorpusChristi)
+                    val fifteenAugust = LocalDate.of(currentYear, 8, 15)
 
-                    }
-                    everyDay++
+                    val easter = easter(currentYear)
+                    val easterDate = LocalDate.of(currentYear, easter[1], easter[0])
 
-                    val dayOdWeek = date.dayOfWeek.value
-                    if(dayOdWeek < 6 && !holidayArray.contains(date)) {
-                        workDay ++
-                    }
-                    date = date.plusDays(1)
+                    val easterMonday = easterDate.plusDays(1)
+                    val dateCorpusChristi = easterDate.plusDays(60)
+
+                    holidayArray = arrayOf(firstJanuary, sixthJanuary, firstMay, thirdMay, firstNovember,
+                            eleventhNovember, firstChristmasDay, secondChristmasDay, fifteenAugust, easterMonday, dateCorpusChristi)
+
                 }
-                ("Day count: $everyDay\nWork days: $workDay").also { textViewDays.text = it }
-            }
-            else {
-                Toast.makeText(this, "The period begins after the end", Toast.LENGTH_LONG).show()
-            }
+                everyDay++
 
+                val dayOdWeek = date.dayOfWeek.value
+                if(dayOdWeek < 6 && !holidayArray.contains(date)) {
+                    workDay ++
+                }
+                date = date.plusDays(1)
+            }
+            ("Day count: $everyDay\nWork days: $workDay").also { textViewDays.text = it }
+        }
+        else {
+            Toast.makeText(this, "The period begins after the end", Toast.LENGTH_LONG).show()
+            ("Day count: -\nWork days: -").also { textViewDays.text = it }
         }
     }
 
