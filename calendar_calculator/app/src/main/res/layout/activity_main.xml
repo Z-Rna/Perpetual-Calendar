@@ -9,26 +9,30 @@
 
     <NumberPicker
         android:id="@+id/numberPickerDate"
-        android:layout_width="227dp"
-        android:layout_height="87dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="92dp"
+        android:layout_width="230dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleMain"
+        app:layout_constraintVertical_bias="0.906"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="293dp"
-        android:layout_height="143dp"
+        android:layout_width="264dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="59dp"
         android:layout_marginTop="368dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="59dp"
+        android:layout_marginBottom="40dp"
         android:gravity="center"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/SyndaysActivity"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,46 +41,36 @@
         android:layout_width="180dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="528dp"
-        android:layout_marginEnd="225dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="74dp"
         android:text="Shopping sunday"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/daysActivity"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/daysActivity"
         android:layout_width="180dp"
         android:layout_height="100dp"
-        android:layout_marginStart="226dp"
-        android:layout_marginTop="528dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="74dp"
         android:text="WORKING DAYS"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/SyndaysActivity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/titleMain"
-        android:layout_width="233dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="89dp"
+        android:layout_width="240dp"
+        android:layout_height="48dp"
         android:layout_marginTop="85dp"
-        android:layout_marginEnd="89dp"
-        android:layout_marginBottom="47dp"
         android:gravity="center"
         android:text="Perpetual Calendar"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/numberPickerDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

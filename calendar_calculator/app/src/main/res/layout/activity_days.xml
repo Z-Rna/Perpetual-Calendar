@@ -12,13 +12,12 @@
         style="@android:style/Widget.DatePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginTop="120dp"
         android:endYear="2200"
         android:startYear="1900"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textViewStart"
-        app:layout_constraintTop_toTopOf="@+id/textViewStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <DatePicker
@@ -26,46 +25,45 @@
         style="@android:style/Widget.DatePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginTop="31dp"
         android:endYear="2200"
         android:startYear="1900"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textViewEnd"
-        app:layout_constraintTop_toTopOf="@+id/textViewEnd"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePicker1"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textViewStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="87dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="100dp"
         android:text="Start date:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="33dp"
+        android:layout_width="55dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="192dp"
         android:text="End day:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePicker1" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewStart" />
 
     <TextView
         android:id="@+id/textViewDays"
-        android:layout_width="206dp"
-        android:layout_height="147dp"
-        android:layout_marginBottom="56dp"
+        android:layout_width="179dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePicker2" />
 
     <TextView
         android:id="@+id/titleWorkDays"
@@ -78,6 +76,19 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/datePicker1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/buttonBack2"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:text="BACK"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDays" />
 </androidx.constraintlayout.widget.ConstraintLayout>

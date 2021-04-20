@@ -46,15 +46,26 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="311dp"
-        android:layout_height="453dp"
+        android:layout_width="306dp"
+        android:layout_height="357dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.689"
+        app:layout_constraintVertical_bias="0.508"
         tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="48dp"
+        android:text="BACK"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

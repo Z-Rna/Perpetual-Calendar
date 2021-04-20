@@ -1,7 +1,9 @@
 package com.example.calendar_calculator
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.DatePicker
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_days.*
@@ -10,44 +12,53 @@ import java.time.LocalDate
 //About LocalDate: https://www.baeldung.com/kotlin/dates
 class DaysActivity : AppCompatActivity() {
     private lateinit var holidayArray: Array<Any>
-    private lateinit var DP1: DatePicker
-    private lateinit var DP2: DatePicker
+    private lateinit var dP1: DatePicker
+    private lateinit var dP2: DatePicker
+    private lateinit var back: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_days)
-        DP1 = findViewById(R.id.datePicker1)
-        DP2 = findViewById(R.id.datePicker2)
+        dP1 = findViewById(R.id.datePicker1)
+        dP2 = findViewById(R.id.datePicker2)
+        back = findViewById(R.id.buttonBack2)
 
         change()
 
-        DP1.setOnDateChangedListener { _, _, _, _ ->
+        dP1.setOnDateChangedListener { _, _, _, _ ->
             change()
         }
 
-        DP2.setOnDateChangedListener { _, _, _, _ ->
+        dP2.setOnDateChangedListener { _, _, _, _ ->
             change()
         }
+
+        back.setOnClickListener {
+            val intent = Intent(this@DaysActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 
     private fun change() {
-        val DP1_day = DP1.dayOfMonth
-        val DP1_month = DP1.month + 1
-        val DP1_year = DP1.year
-        val DP1_date = LocalDate.of(DP1_year, DP1_month, DP1_day)
+        val dP1Day = dP1.dayOfMonth
+        val dP1Month = dP1.month + 1
+        val dP1Year = dP1.year
+        val dP1Date = LocalDate.of(dP1Year, dP1Month, dP1Day)
 
-        val DP2_day = DP2.dayOfMonth
-        val DP2_month = DP2.month + 1
-        val DP2_year = DP2.year
-        val DP2_date = LocalDate.of(DP2_year, DP2_month, DP2_day)
+        val dP2Day = dP2.dayOfMonth
+        val dP2Month = dP2.month + 1
+        val dP2Year = dP2.year
+        val dP2Date = LocalDate.of(dP2Year, dP2Month, dP2Day)
 
-        if(!DP1_date.isAfter(DP2_date)) {
-            var date = DP1_date
+        if(!dP1Date.isAfter(dP2Date)) {
+            var date = dP1Date
             var everyDay = 0
             var workDay = 0
-            var currentYear = DP1_year - 1
+            var currentYear = dP1Year - 1
 
-            while (!date.isEqual(DP2_date)) {
-                if(!currentYear.equals(date.year)) {
+            while (!date.isEqual(dP2Date)) {
+                if(currentYear != date.year) {
                     currentYear = date.year
 
                     val firstJanuary = LocalDate.of(currentYear, 1, 1)

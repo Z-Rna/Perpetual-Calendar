@@ -1,8 +1,10 @@
 package com.example.calendar_calculator
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_sunday.*
@@ -10,6 +12,7 @@ import java.time.LocalDate
 
 class SundayActivity : AppCompatActivity() {
     private lateinit var listView: ListView
+    private lateinit var back: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sunday)
@@ -34,12 +37,18 @@ class SundayActivity : AppCompatActivity() {
                                     "April: $lastSundayApril",
                                     "June: $lastSundayJune",
                                     "August: $lastSundayAugust",
-                                    "December: $lastSundayChristmas",
-                                    "December: $lastLastSundayChristmas")
+                                    "December: $lastLastSundayChristmas",
+                                    "December: $lastSundayChristmas")
             listView = findViewById(R.id.listView)
             val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, dates)
             listView.adapter = adapter
         }
+        back = findViewById(R.id.buttonBack)
+        back.setOnClickListener {
+            val intentBack = Intent(this@SundayActivity, MainActivity::class.java)
+            startActivity(intentBack)
+        }
+
     }
     private fun lastSunday(date: LocalDate): LocalDate {
         val dayOfWeek = date.dayOfWeek.value

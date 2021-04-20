@@ -3,6 +3,7 @@ package com.example.calendar_calculator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.NumberPicker
 import android.widget.TextView
 import java.time.LocalDate
@@ -17,10 +18,13 @@ import kotlin.properties.Delegates
 class MainActivity : AppCompatActivity() {
     private var year by Delegates.notNull<Int>()
     private lateinit var date: LocalDate
-
+    private lateinit var sundayButton: Button
+    private lateinit var daysButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        sundayButton = findViewById(R.id.SyndaysActivity)
+        daysButton = findViewById(R.id.daysActivity)
 
         val numberPickerDate: NumberPicker = findViewById(R.id.numberPickerDate)
         numberPickerDate.minValue = 1900
@@ -32,14 +36,14 @@ class MainActivity : AppCompatActivity() {
             changeDate()
         }
 
-        SyndaysActivity.setOnClickListener {
+        sundayButton.setOnClickListener {
             val intent = Intent(this@MainActivity, SundayActivity::class.java)
             intent.putExtra("year", year)
             intent.putExtra("easter", date.minusDays(7).toString())
             startActivity(intent)
         }
 
-        daysActivity.setOnClickListener {
+        daysButton.setOnClickListener {
             val intent = Intent(this@MainActivity, DaysActivity::class.java)
             startActivity(intent)
         }
